@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://crac6k3i1u8p4"]
+[gd_scene load_steps=7 format=3 uid="uid://crac6k3i1u8p4"]
 
 [ext_resource type="Texture2D" uid="uid://b4quodieekqhi" path="res://Solaria Demo Update 01.png" id="1_ivvlv"]
 [ext_resource type="Script" path="res://world.gd" id="1_qf26f"]
-[ext_resource type="PackedScene" uid="uid://dp3qbk6qm2g4x" path="res://marquise_de_cat.tscn" id="2_lu2b4"]
 [ext_resource type="PackedScene" uid="uid://dgncc7yy3q50e" path="res://clearing.tscn" id="3_4eg3d"]
 [ext_resource type="PackedScene" uid="uid://cxjl6pyb0l03j" path="res://buttons.tscn" id="5_ewvrq"]
 
@@ -399,32 +398,17 @@ layer_2/tile_data = PackedInt32Array()
 [node name="Clearing1" parent="." instance=ExtResource("3_4eg3d")]
 position = Vector2(48, 120)
 
-[node name="MarquiseDeCatWarrior" parent="Clearing1" instance=ExtResource("2_lu2b4")]
-z_index = 3
-position = Vector2(56, 40)
-
-[node name="MarquiseDeCatWarrior4" parent="Clearing1" instance=ExtResource("2_lu2b4")]
-position = Vector2(16, 72)
-
 [node name="Clearing2" parent="." instance=ExtResource("3_4eg3d")]
 position = Vector2(328, 120)
 
-[node name="MarquiseDeCatWarrior2" parent="." instance=ExtResource("2_lu2b4")]
-z_index = 3
-position = Vector2(344, 184)
-
 [node name="Clearing3" parent="." instance=ExtResource("3_4eg3d")]
 position = Vector2(200, 328)
-
-[node name="MarquiseDeCatWarrior3" parent="Clearing3" instance=ExtResource("2_lu2b4")]
-z_index = 3
-position = Vector2(64, 32)
 
 [node name="Clearing4" parent="." instance=ExtResource("3_4eg3d")]
 position = Vector2(464, 304)
 
 [node name="Buttons" parent="." instance=ExtResource("5_ewvrq")]
-position = Vector2(568, 168)
+position = Vector2(548, 156)
 
 [node name="Knop2nr3" type="Node2D" parent="."]
 position = Vector2(16, 8)

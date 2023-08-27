@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://inyje80nerjf"]
+
+[ext_resource type="Texture2D" uid="uid://bp7kqy41vkvhi" path="res://icon.svg" id="1_y6ngq"]
+[ext_resource type="Script" path="res://Marquise/Marquise_warrior.gd" id="2_r5rys"]
+
+[node name="warrior" type="Sprite2D"]
+position = Vector2(8, 8)
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("1_y6ngq")
+script = ExtResource("2_r5rys")

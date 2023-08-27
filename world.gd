@@ -2,62 +2,59 @@ extends Node2D
 
 var IsClearingLinked
 
+@onready var buttons = $Buttons
+@onready var clearing_1 = $Clearing1
+@onready var clearing_2 = $Clearing2
+@onready var clearing_3 = $Clearing3
+@onready var clearing_4 = $Clearing4
+
+var currentClearing
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
-	$Clearing1.verbindingen = [$Clearing2,$Clearing3]
-	$Clearing2.verbindingen = [$Clearing1,$Clearing3,$Clearing4]
-	$Clearing3.verbindingen = [$Clearing1,$Clearing2,$Clearing4]
-	$Clearing4.verbindingen = [$Clearing2,$Clearing3]
-	pass # Replace with function body.
+	clearing_1.verbindingen = [clearing_2,clearing_3]
+	clearing_2.verbindingen = [clearing_1,clearing_3,clearing_4]
+	clearing_3.verbindingen = [clearing_1,clearing_2,clearing_4]
+	clearing_4.verbindingen = [clearing_2,clearing_3]
+	
+	buttons.sig_recruit.connect(recruit)
+	buttons.sig_move.connect(move)
+	
+	clearing_1.sig_pressed.connect(pressed_clearing)
+	clearing_2.sig_pressed.connect(pressed_clearing)
+	clearing_3.sig_pressed.connect(pressed_clearing)
+	clearing_4.sig_pressed.connect(pressed_clearing)
+	
+	currentClearing = clearing_1	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-	
-	print("test")
-	var UserInput
-	#var From = AskForClearing()
-	
-	print("From " , 1)
-	#var To = AskForClearing()
-	print("To " , 2)
-	var From = $Clearing2
-	var To = $Clearing3
-	
-	#ApplyMoveBetweenClearings(From,To)
-
 	if Input.is_action_just_pressed("ui_1"):
 		var TempTest = $Clearing1
 		var DidIGetInput = 1
 		print("al tot hier")
 	
 	
+func recruit():
+	currentClearing.change_warrior(1)
 	
-	#if Input.is_action_just_pressed("ui_left"):
-	#	UserInput = "Left"
-	#if Input.is_action_just_pressed("ui_right"):
-	#	UserInput = "Right"
-	#print(Input.is_action_just_pressed("TestDuwOpA"))
+func destroy():
+#	currentClearing.remove_warrior()
+	pass
+
+var moveInProgress = false
+func move():
+	moveInProgress = true
 	
-	
-	
-	
-#	ApplyMove(UserInput,$Clearing1,$Clearing2)
-#	#TestDuwOpA
-#	print(UserInput)
-#	print($Clearing1.verbindingen)
-#	CheckIsClearingLinked($Clearing1,$Clearing2)
-#	var test = $Clearing2.verbindingen[0]
-#	$Clearing2.position
-#	var deltaX
-#	var deltaY
-	
-	#deltaX = $Clearing.polygons[1]
-	
-	# - $Clearing2.polygons[1]
-	#$MarquiseDeCatWarrior3.move_local_y(deltaX)
-	
+func pressed_clearing(clearing):
+	if(moveInProgress):
+		clearing.move_from(currentClearing, 1)	
+		moveInProgress = false
+	else:
+		currentClearing = clearing
 	
 func TestMetPrint():
 	print("TestMetPrint")
@@ -70,8 +67,8 @@ func ApplyMoveBetweenClearings(ClearingA,ClearingB):
 	
 	var deltaX = ClearingB.global_position[0]-ClearingA.global_position[0]
 	var deltaY = ClearingB.global_position[1]-ClearingA.global_position[1]
-	$MarquiseDeCatWarrior2.move_local_x(deltaX)
-	$MarquiseDeCatWarrior2.move_local_y(deltaY)
+#	$MarquiseDeCatWarrior2.move_local_x(deltaX)
+#	$MarquiseDeCatWarrior2.move_local_y(deltaY)
 		
 			
 			
