@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://nk33qoovmu2i"]
+
+[node name="Player1" type="Polygon2D"]
