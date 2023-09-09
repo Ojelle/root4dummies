@@ -3,7 +3,7 @@ extends Node2D
 
 signal sig_recruit
 signal sig_move
-signal sig_build
+signal sig_buildGeklikt
 signal sig_slideramountWarriors
 var test = 0
 
@@ -30,7 +30,7 @@ func _on_move_pressed():
 
 
 func _on_build_pressed():
-	sig_build.emit()
+	sig_buildGeklikt.emit()
 
 
 

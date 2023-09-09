@@ -16,4 +16,4 @@ offset_right = 533.917
 offset_bottom = -569.0
 scale = Vector2(28.4882, 39.6176)
 bbcode_enabled = true
-text = "Test"
+text = "Text"

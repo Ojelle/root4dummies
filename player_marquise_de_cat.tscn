@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://3rxcacg8bdpk"]
+
+[ext_resource type="Script" path="res://player_marquise_de_cat.gd" id="1_owe6r"]
+[ext_resource type="Texture2D" uid="uid://c4t4qjtd8mn6q" path="res://Marquise/Ruleboard.jpg" id="2_rp7ue"]
+[ext_resource type="Texture2D" uid="uid://7a7xj5nktw38" path="res://Marquise/BuildingSawmill.png" id="3_mtki7"]
+[ext_resource type="Texture2D" uid="uid://dskebtmx8lgyw" path="res://Marquise/BuildingWorkshop.png" id="4_laekv"]
+[ext_resource type="Texture2D" uid="uid://clbg125ae78r7" path="res://Marquise/BuildingRecruiter.png" id="5_ekpah"]
+
+[node name="PlayerMarquiseDeCat" type="Node2D"]
+script = ExtResource("1_owe6r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(618, 362)
+rotation = -1.5708
+scale = Vector2(0.2859, 0.309353)
+texture = ExtResource("2_rp7ue")
+
+[node name="Sawmill" type="Button" parent="."]
+offset_right = 828.0
+offset_bottom = 843.0
+scale = Vector2(0.0578245, 0.0563747)
+icon = ExtResource("3_mtki7")
+
+[node name="WoodCost" type="RichTextLabel" parent="Sawmill"]
+layout_mode = 0
+offset_left = 138.35
+offset_top = 851.446
+offset_right = 158.35
+offset_bottom = 879.446
+scale = Vector2(15, 15)
+text = "9"
+scroll_active = false
+
+[node name="Workshop" type="Button" parent="."]
+offset_left = 56.0
+offset_right = 1302.0
+offset_bottom = 1235.0
+scale = Vector2(0.0385277, 0.0387989)
+icon = ExtResource("4_laekv")
+
+[node name="WoodCost" type="RichTextLabel" parent="Workshop"]
+offset_left = 778.661
+offset_top = 1237.15
+offset_right = 794.661
+offset_bottom = 1258.15
+scale = Vector2(25.7591, 23.6166)
+text = "9"
+scroll_active = false
+
+[node name="Recruiter" type="Button" parent="."]
+offset_left = 27.0
+offset_top = 53.0
+offset_right = 855.0
+offset_bottom = 896.0
+scale = Vector2(0.0578245, 0.0563747)
+icon = ExtResource("5_ekpah")
+
+[node name="WoodCost" type="RichTextLabel" parent="Recruiter"]
+offset_left = 363.168
+offset_top = 851.445
+offset_right = 383.168
+offset_bottom = 879.445
+scale = Vector2(15, 15)
+text = "9"
+scroll_active = false
+
+[connection signal="pressed" from="Sawmill" to="." method="_on_sawmill_pressed"]
+[connection signal="pressed" from="Workshop" to="." method="_on_workshop_pressed"]
+[connection signal="pressed" from="Recruiter" to="." method="_on_recruiter_pressed"]

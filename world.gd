@@ -3,22 +3,28 @@ extends Node2D
 var IsClearingLinked
 var WarriorsToBeMoved = 0
 var moveInProgress = false #stond net boven functie 'move'
+var currentPlayer
+var buildingType
 
 signal sig_MaxWarriorsToBeMoved
 
 
 @onready var buttons = $Buttons
+
 @onready var clearing_1 = $Clearing1
 @onready var clearing_2 = $Clearing2
 @onready var clearing_3 = $Clearing3
 @onready var clearing_4 = $Clearing4
+
+@onready var player_marquise_de_cat = $PlayerMarquiseDeCat
+
 
 var currentClearing
 
 
 
 func _ready(): # Called when the node enters the scene tree for the first time.
-	
+	player_marquise_de_cat.hide()
 	#buttons.hide()
 	#SAM - Mijn buikgevoel zegt dat er een 'start of game' fase moet zijn. Hierbij zal ik bvb de knoppen zichtbaar maken na een eerste maal het selecteren van een clearing.
 	#Hierdoor zou het ook niet meer nodig zijn om kunstmatig een willekeurige clearing als eerste geselecteerde clearing te kiezen
@@ -29,15 +35,18 @@ func _ready(): # Called when the node enters the scene tree for the first time.
 	clearing_3.verbindingen = [clearing_1,clearing_2,clearing_4]
 	clearing_4.verbindingen = [clearing_2,clearing_3]
 	
-	clearing_1.MaxGebouwen = 1
-	clearing_2.MaxGebouwen = 2
-	clearing_3.MaxGebouwen = 3
-	clearing_4.MaxGebouwen = 4
+	clearing_1.maxGebouwen = 1
+	clearing_2.maxGebouwen = 2
+	clearing_3.maxGebouwen = 3
+	clearing_4.maxGebouwen = 4
 	
 	buttons.sig_recruit.connect(recruit)
 	buttons.sig_move.connect(move)
-	buttons.sig_build.connect(build)
+	buttons.sig_buildGeklikt.connect(buildGeklikt)
 	buttons.sig_slideramountWarriors.connect(setAmountWarriorsToBeMoved)
+	
+	player_marquise_de_cat.sig_buildGekozen.connect(buildGekozen)
+
 	
 	clearing_1.sig_pressed.connect(pressed_clearing)
 	clearing_2.sig_pressed.connect(pressed_clearing)
@@ -62,10 +71,15 @@ func destroy():
 #	currentClearing.remove_warrior()
 	pass
 
-func build():
-	pass
+func buildGeklikt():
+	player_marquise_de_cat.show()
 
 
+func buildGekozen(currentPlayer,buildingType):
+	currentClearing.add_building(currentPlayer,buildingType)
+	player_marquise_de_cat.hide()
+
+	
 func move():
 	moveInProgress = true
 	
@@ -97,6 +111,19 @@ func pressed_clearing(clearing):
 		else:
 			buttons.get_node("Move").hide()
 		
+	if (clearing.aantalGebouwen<clearing.maxGebouwen): #moet ik hier eigenlijk ook een functie van maken? Voor de leesbaarheid beter wel zeker? 
+														#func IsErNogEenBouwplaatsVrij
+		buttons.get_node("Build").show() 	
+	
+	else:
+		buttons.get_node("Build").hide() 	
+
+
+
+
+
+
+
 
 func CheckIsClearingConnected(clearingA,clearingB):
 	if clearingA.verbindingen.find(clearingB) != -1:
