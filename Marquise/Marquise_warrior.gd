@@ -1,19 +1,23 @@
 extends Sprite2D
 
 var amount = 0
+@onready var warrior = $"."
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	pass # Replace with function body.
+	pass 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
 	pass
 	
 func adjustAmount(change):
 	if(amount + change > 0):
 		amount += change
+		$TekstWarrior.text = str(amount)
 	else:
 		queue_free()
 
+func currentAmount():
+	return amount

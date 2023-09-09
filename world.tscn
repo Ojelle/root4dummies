@@ -408,27 +408,4 @@ position = Vector2(200, 328)
 position = Vector2(464, 304)
 
 [node name="Buttons" parent="." instance=ExtResource("5_ewvrq")]
-position = Vector2(548, 156)
-
-[node name="Knop2nr3" type="Node2D" parent="."]
-position = Vector2(16, 8)
-
-[node name="Button" type="Button" parent="Knop2nr3"]
-offset_left = 560.0
-offset_top = 8.0
-offset_right = 612.0
-offset_bottom = 48.0
-text = "2 nr 3"
-
-[node name="Knop3nr2" type="Node2D" parent="."]
-position = Vector2(16, 8)
-
-[node name="Button" type="Button" parent="Knop3nr2"]
-offset_left = 560.0
-offset_top = 56.0
-offset_right = 608.0
-offset_bottom = 96.0
-text = "3 nr 2"
-
-[connection signal="pressed" from="Knop2nr3/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Knop3nr2/Button" to="." method="_on_button_pressed2"]
+position = Vector2(624, 120)

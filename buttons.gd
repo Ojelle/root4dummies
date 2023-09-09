@@ -3,13 +3,18 @@ extends Node2D
 
 signal sig_recruit
 signal sig_move
+signal sig_build
+signal sig_slideramountWarriors
+var test = 0
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	pass # Replace with function body.
 
+	$Sliders.hide()
+	Events.sig_WarriorsInClearing.connect(setMaxWarriorsSlider)
+	Events.sig_ValidMoveEnded.connect(HideSlider)
+	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
@@ -18,10 +23,39 @@ func _on_recruit_pressed():
 
 
 func _on_move_pressed():
+	$Sliders.show()
+	Events.sig_WarriorsInClearing
 	sig_move.emit()
-#
-#	var deltaX = 5#ClearingB.global_position[0]-ClearingA.global_position[0]
-#	var deltaY = 5#ClearingB.global_position[1]-ClearingA.global_position[1]
-#	$MarquiseDeCatWarrior3.move_local_x(deltaX)
-#	$MarquiseDeCatWarrior3.move_local_y(deltaY)
 	
+
+
+func _on_build_pressed():
+	sig_build.emit()
+
+
+
+func _on_h_slider_amount_warriors_drag_ended(value_changed):
+	var amount = $Sliders/HSliderAmountWarriors.get_value()
+	sig_slideramountWarriors.emit(amount)
+
+
+
+func HideSlider():
+	$Sliders.hide() #deze twee wil ik bij het klikken van de 2de (geldige)clearing
+	$Sliders/HSliderAmountWarriors.value=0
+
+func setMaxWarriorsSlider(max):
+	$Sliders/HSliderAmountWarriors.max_value=max
+	
+
+
+func _on_h_slider_amount_warriors_value_changed(value):
+	var Opschrift = " warriors"
+	Opschrift = str($Sliders/HSliderAmountWarriors.value) + Opschrift
+	$Sliders/LabelCurrentAmount.text=Opschrift
+
+
+
+#	var deltaX = 5#ClearingB.global_position[0]-ClearingA.global_position[0]
+#	$MarquiseDeCatWarrior3.move_local_x(deltaX)
+

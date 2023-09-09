@@ -17,5 +17,35 @@ offset_right = 73.0
 offset_bottom = 92.0
 text = "Recruit"
 
+[node name="Build" type="Button" parent="."]
+offset_top = 104.0
+offset_right = 72.0
+offset_bottom = 144.0
+text = "Build"
+
+[node name="Sliders" type="Node2D" parent="."]
+
+[node name="LabelAmountWarriors" type="Label" parent="Sliders"]
+offset_left = 80.0
+offset_right = 120.0
+offset_bottom = 23.0
+text = "How Much Warriors move"
+
+[node name="HSliderAmountWarriors" type="HSlider" parent="Sliders"]
+offset_left = 80.0
+offset_top = 24.0
+offset_right = 280.0
+offset_bottom = 40.0
+max_value = 5.0
+
+[node name="LabelCurrentAmount" type="Label" parent="Sliders"]
+offset_left = 152.0
+offset_top = 40.0
+offset_right = 240.0
+offset_bottom = 63.0
+
 [connection signal="pressed" from="Move" to="." method="_on_move_pressed"]
 [connection signal="pressed" from="Recruit" to="." method="_on_recruit_pressed"]
+[connection signal="pressed" from="Build" to="." method="_on_build_pressed"]
+[connection signal="drag_ended" from="Sliders/HSliderAmountWarriors" to="." method="_on_h_slider_amount_warriors_drag_ended"]
+[connection signal="value_changed" from="Sliders/HSliderAmountWarriors" to="." method="_on_h_slider_amount_warriors_value_changed"]

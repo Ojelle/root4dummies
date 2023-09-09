@@ -1,6 +1,10 @@
 extends Polygon2D
 
 var verbindingen #Hier moeten de clearings inkomen (bij maken van de map) waarmee de clearing allemaal verbonden is 
+var MaxGebouwen
+var AantalGebouwen 
+#var LijstGebouwen = [] - SAM - Gebouwen wss niet apart bijhouden maar ook als child toevoegen? Ik zou denken van wel
+
 @onready var warrior_class = preload("res://Marquise/Marquise_warrior.tscn")
 @onready var clearing = $"."
 
@@ -11,9 +15,10 @@ signal sig_pressed(clearing)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#Aantal gebouwen wordt geset bij 'worldGen' om bvb ruines aan te duiden
 	pass
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(delta):
 	pass
 
@@ -32,19 +37,16 @@ func move_from(clearing, amount):
 	self.change_warrior(amount)#self. is niet nodig
 	var from = self.warriorInstance.amount
 	var to = clearing.warriorInstance.amount
-	print(from, ", ", to)
+	#print(from, ", ", to)
 
 func _on_button_mouse_entered():
 	clearing.color = hoverColor
-	pass # Replace with function body.
 
 
 func _on_button_mouse_exited():
 	color = baseColor
-	pass # Replace with function body.
 
 
 func _on_button_pressed():
-	print("clicked")
 	sig_pressed.emit(self)
-	pass # Replace with function body.
+
