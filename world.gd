@@ -6,7 +6,7 @@ var moveInProgress = false #stond net boven functie 'move'
 var currentPlayer
 var buildingType
 
-signal sig_MaxWarriorsToBeMoved
+
 
 
 @onready var buttons = $Buttons
@@ -16,15 +16,15 @@ signal sig_MaxWarriorsToBeMoved
 @onready var clearing_3 = $Clearing3
 @onready var clearing_4 = $Clearing4
 
-@onready var player_marquise_de_cat = $PlayerMarquiseDeCat
+@onready var faction_marquise_de_cat = $FactionMarquiseDeCat
 
 
 var currentClearing
 
 
 
-func _ready(): # Called when the node enters the scene tree for the first time.
-	player_marquise_de_cat.hide()
+func _ready(): 
+	faction_marquise_de_cat.hide()
 	#buttons.hide()
 	#SAM - Mijn buikgevoel zegt dat er een 'start of game' fase moet zijn. Hierbij zal ik bvb de knoppen zichtbaar maken na een eerste maal het selecteren van een clearing.
 	#Hierdoor zou het ook niet meer nodig zijn om kunstmatig een willekeurige clearing als eerste geselecteerde clearing te kiezen
@@ -45,7 +45,7 @@ func _ready(): # Called when the node enters the scene tree for the first time.
 	buttons.sig_buildGeklikt.connect(buildGeklikt)
 	buttons.sig_slideramountWarriors.connect(setAmountWarriorsToBeMoved)
 	
-	player_marquise_de_cat.sig_buildGekozen.connect(buildGekozen)
+	faction_marquise_de_cat.sig_buildGekozen.connect(buildGekozen)
 
 	
 	clearing_1.sig_pressed.connect(pressed_clearing)
@@ -72,12 +72,12 @@ func destroy():
 	pass
 
 func buildGeklikt():
-	player_marquise_de_cat.show()
+	faction_marquise_de_cat.show()
 
 
 func buildGekozen(currentPlayer,buildingType):
 	currentClearing.add_building(currentPlayer,buildingType)
-	player_marquise_de_cat.hide()
+	faction_marquise_de_cat.hide()
 
 	
 func move():
@@ -87,7 +87,7 @@ func move():
 func pressed_clearing(clearing):
 	
 	if(moveInProgress):
-		if(CheckIsClearingConnected(currentClearing,clearing)==true):
+		if(checkIsClearingConnected(currentClearing,clearing)==true):
 			clearing.move_from(currentClearing, WarriorsToBeMoved)	# hier de sanitized user input plaatsen, vlak voor move progressen vraag ik input
 			moveInProgress = false
 			#Ik zou willen op dit punt de doelclearing intstellen als nieuwe 'geselecteerde' clearing, maar dan moet ik ook mn max van de move slider aanpassen. 
@@ -102,8 +102,8 @@ func pressed_clearing(clearing):
 		var MaxWarriors = 0		#SAM - IK HEB HET GEVOEL DAT DIT HIER NIET OP ZIJN PLAATS STAAT - DAT DIT OFWEL EEN FUNCTIE MOET ZIJN OF VIA IETS ANDERS MOET AANGEROEPEN WORDEN
 		if clearing.get_node("warrior") != null:
 			MaxWarriors = clearing.warriorInstance.currentAmount()
-			Events.sig_WarriorsInClearing.emit(MaxWarriors)
-			sig_MaxWarriorsToBeMoved.emit(MaxWarriors)
+			Events.sig_WarriorsInClearing.emit(MaxWarriors) #JELLE - check of ik dit niet kan doen met get.node(jadejadejade)
+
 			buttons.get_node("Move").show() 	
 				#SAM - DE CHECK OF ER WARRIORS ZIJN MOET QUASI CONTINU GEBEUREN, ALS ER KOMEN MOET DE KNOP ZICHTBAAR WORDEN
 				#SAM - VOLGENS MIJ NIET IN PHYSICS PROCESS, EERDER ALS ER EEN WARRIOR GEINSTANTIEERD WORDT IN DE CLEARING
@@ -125,7 +125,7 @@ func pressed_clearing(clearing):
 
 
 
-func CheckIsClearingConnected(clearingA,clearingB):
+func checkIsClearingConnected(clearingA,clearingB):
 	if clearingA.verbindingen.find(clearingB) != -1:
 		return true
 	else:
@@ -141,3 +141,8 @@ func CheckIsClearingConnected(clearingA,clearingB):
 	#var deltaY = ClearingB.global_position[1]-ClearingA.global_position[1]
 #	$MarquiseDeCatWarrior2.move_local_x(deltaX)
 #	$MarquiseDeCatWarrior2.move_local_y(deltaY)
+
+
+#on recruit - move zichtbaar maken
+#bouwen
+#custom buttons

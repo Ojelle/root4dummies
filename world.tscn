@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b4quodieekqhi" path="res://Solaria Demo Update 01.png" id="1_ivvlv"]
 [ext_resource type="Script" path="res://world.gd" id="1_qf26f"]
 [ext_resource type="PackedScene" uid="uid://dgncc7yy3q50e" path="res://clearing.tscn" id="3_4eg3d"]
-[ext_resource type="PackedScene" uid="uid://3rxcacg8bdpk" path="res://player_marquise_de_cat.tscn" id="5_awyth"]
+[ext_resource type="PackedScene" uid="uid://3rxcacg8bdpk" path="res://faction_marquise_de_cat.tscn" id="5_awyth"]
 [ext_resource type="PackedScene" uid="uid://cxjl6pyb0l03j" path="res://buttons.tscn" id="5_ewvrq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ist8n"]
@@ -411,5 +411,5 @@ position = Vector2(464, 304)
 [node name="Buttons" parent="." instance=ExtResource("5_ewvrq")]
 position = Vector2(624, 120)
 
-[node name="PlayerMarquiseDeCat" parent="." instance=ExtResource("5_awyth")]
+[node name="FactionMarquiseDeCat" parent="." instance=ExtResource("5_awyth")]
 position = Vector2(720, 192)
