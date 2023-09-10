@@ -97,7 +97,10 @@ func pressed_clearing(clearing):
 			print("clearingsNotConnected")
 			#soort rode flash /visuele waarschuwing geven dat dit geen geldig doel was
 	else:
+		currentClearing.setUnselectedClearing()
 		currentClearing = clearing
+		currentClearing.setSelectedClearing()
+	
 		
 		var MaxWarriors = 0		#SAM - IK HEB HET GEVOEL DAT DIT HIER NIET OP ZIJN PLAATS STAAT - DAT DIT OFWEL EEN FUNCTIE MOET ZIJN OF VIA IETS ANDERS MOET AANGEROEPEN WORDEN
 		if clearing.get_node("warrior") != null:

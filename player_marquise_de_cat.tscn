@@ -39,6 +39,7 @@ scale = Vector2(0.0385277, 0.0387989)
 icon = ExtResource("4_laekv")
 
 [node name="WoodCost" type="RichTextLabel" parent="Workshop"]
+layout_mode = 0
 offset_left = 778.661
 offset_top = 1237.15
 offset_right = 794.661
@@ -56,6 +57,7 @@ scale = Vector2(0.0578245, 0.0563747)
 icon = ExtResource("5_ekpah")
 
 [node name="WoodCost" type="RichTextLabel" parent="Recruiter"]
+layout_mode = 0
 offset_left = 363.168
 offset_top = 851.445
 offset_right = 383.168
