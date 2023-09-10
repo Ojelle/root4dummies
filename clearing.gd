@@ -2,7 +2,8 @@ extends Polygon2D
 
 var verbindingen #Hier moeten de clearings inkomen (bij maken van de map) waarmee de clearing allemaal verbonden is 
 var maxGebouwen
-var aantalGebouwen 
+var aantalGebouwen
+var selectedClearing = false 
 #var LijstGebouwen = [] - SAM - Gebouwen wss niet apart bijhouden maar ook als child toevoegen? Ik zou denken van wel
 
 @onready var warrior_class = preload("res://Marquise/Marquise_warrior.tscn")
@@ -10,6 +11,7 @@ var aantalGebouwen
 
 var baseColor : Color = Color(.78, .32, .09, 1)
 var hoverColor : Color = Color("CHARTREUSE")
+var selectedColor : Color = Color("CYAN")
 
 signal sig_pressed(clearing)
 
@@ -47,12 +49,23 @@ func add_building(currentPlayer,buildingType):
 	
 	pass
 
+func setSelectedClearing():
+	color = selectedColor
+	selectedClearing = true
+	
+	
+func setUnselectedClearing():
+	color = baseColor
+	selectedClearing = false
+
 func _on_button_mouse_entered():
-	clearing.color = hoverColor
+	if selectedClearing == false: 
+		clearing.color = hoverColor
 
 
 func _on_button_mouse_exited():
-	color = baseColor
+	if selectedClearing == false: 
+		color = baseColor
 
 
 func _on_button_pressed():
